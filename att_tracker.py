@@ -5,7 +5,7 @@ from pyxlsb import open_workbook
 from st_aggrid import AgGrid, GridOptionsBuilder, DataReturnMode, GridUpdateMode
     
 # df = pd.read_csv(r'C:\Users\ecorjoh\OneDrive - Ericsson\Projects\Smart CD\data\smartCD_verizon-2024-08-16.csv')
-with open_workbook(r'C:\Users\ecorjoh\OneDrive - Ericsson\Projects\Anupama_Chandra\Closeout Tracker Copy.xlsb') as wb:
+with open_workbook(r'Closeout Tracker Copy.xlsb') as wb:
   with wb.get_sheet('Main Data') as sheet:
     data = [[cell.v for cell in row] for row in sheet.rows()]
     df = pd.DataFrame(data[4:], columns=data[0])
