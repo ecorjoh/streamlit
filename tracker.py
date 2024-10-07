@@ -3,13 +3,15 @@ import pandas as pd
 import pdb
 from pyxlsb import open_workbook
 from st_aggrid import AgGrid, GridOptionsBuilder, DataReturnMode, GridUpdateMode
-    
+
+df = pd.DataFrame()   
 # df = pd.read_csv(r'C:\Users\ecorjoh\OneDrive - Ericsson\Projects\Smart CD\data\smartCD_verizon-2024-08-16.csv')
 # with open_workbook(r'C:\Users\ecorjoh\OneDrive - Ericsson\Projects\Anupama_Chandra\Closeout Tracker Copy.xlsb') as wb:
 with open_workbook('Closeout Tracker Copy.xlsb') as wb:
   with wb.get_sheet('Main Data') as sheet:
     data = [[cell.v for cell in row] for row in sheet.rows()]
     df = pd.DataFrame(data[4:], columns=data[0])
+# df = pd.read_excel('Closeout Tracker Copy.xlsx', sheet_name="Main Data", skiprows=[1,2,3])
 
 df = df.dropna(axis=1,how='all') 
 df = df.head(1000)       
@@ -59,6 +61,7 @@ gb.configure_selection(selection_mode="multiple", use_checkbox=True)
 gb.configure_pagination(paginationAutoPageSize=True)  # Enable pagination
 gb.configure_columns(default_groups, pinned="left")
 gb.configure_side_bar()
+gb.configure_grid_options(suppressMovableColumns=True)
 # gb.configure_grid_options(enable_pivot=True)  # Enable pivoting
 
 # Initialize session state to keep track of whether columns are hidden or not
@@ -76,14 +79,24 @@ else:
      gb.configure_columns(default_groups[1:], hide=False)
      
 for col in common_group[:8]:
-    gb.configure_column(col, cellStyle={"backgroundColor": "#adb0ab", "color": "white"})
+    gb.configure_column(col, cellStyle={"backgroundColor": "#7a7fa1", "color": "white"})
 
-gb.configure_grid_options(headerStyle={"backgroundColor": "#FFA726", "color": "white", "fontWeight": "bold"})
-      
+# gb.configure_grid_options(headerStyle={"backgroundColor": "#FFA726", "color": "white", "fontWeight": "bold"})
+    
 # Configure grid options for return and update modes
 grid_options = gb.build()
-# grid_options['onFirstDataRendered'] = "function(params) { params.api.sizeColumnsToFit(); }"
-# grid_options['columnDefs'] = grouped_columns
+
+st.markdown("""
+    <style>
+    .custom-header {
+        background-color: #4CAF50 !important;  /* Change the header background color */
+        color: black !important;               /* Change the header text color */
+        font-size: 16px !important;            /* Increase font size */
+        text-align: center !important;         /* Center the header text */
+        font-weight: bold !important;          /* Make the header text bold */
+    }
+    </style>
+""", unsafe_allow_html=True)
 
 # Display DataGrid
 st.subheader("Data Grid:")
