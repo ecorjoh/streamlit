@@ -6,7 +6,7 @@ import pandas as pd
 import textwrap
 
 
-COLUMNS = ["Opportunity Name", "Size* ($M)", "OPEX", "Expected Close Date", "Current Win Probability (%)", "Percent Used"]
+COLUMNS = ["Opportunity Name", "Size* ($M)", "OPEX", "Expected Close Date", "Current Win Probability (%)"]
 def wrap_text(text, width=15):
     return "<br>".join(textwrap.wrap(str(text), width=width))
   
