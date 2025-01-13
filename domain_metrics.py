@@ -88,7 +88,7 @@ def main():
             specs=[
                 [{"type": "xy"}, {"type": "domain"}]
             ],
-            horizontal_spacing=0.09,  # space between the two columns
+            horizontal_spacing=0.1,  # space between the two columns
             column_widths=[0.6, 0.4], # adjust widths: 60% for scatter, 40% for table
             subplot_titles=("Opportunity Scatter", "Data Table")
         )
