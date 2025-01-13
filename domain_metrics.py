@@ -152,7 +152,7 @@ def main():
             height=1000,
             coloraxis_colorscale=px.colors.sequential.Reds,
             coloraxis_colorbar=dict(
-                title="% of Budget Used",
+                title="% Budget Used",
                 x=0.65,
                 y=0.5,
                 len=1,
