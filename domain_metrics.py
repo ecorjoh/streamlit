@@ -128,6 +128,7 @@ def main():
         )
         fig.update_yaxes(
             title_text="Win Probability (%)",
+            range=[0, 100],
             row=1, col=1
         )
 
