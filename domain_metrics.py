@@ -139,7 +139,7 @@ def main():
             height=1000,
             coloraxis_colorscale=px.colors.sequential.Reds,
             coloraxis_colorbar=dict(
-                title="OPEX as % of Budget",
+                title="% of Budget Used",
                 x=0.53,
                 y=0.5,
                 len=0.8,
