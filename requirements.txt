@@ -1,3 +1,4 @@
 pandas
 pyxlsb
 streamlit-aggrid
+plotly
