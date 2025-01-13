@@ -61,7 +61,7 @@ def main():
             y="Current Win Probability (%)",
             text="Opportunity Name Wrapped",
             size="Size* ($M)",
-            size_max=50,
+            size_max=70,
             range_y=[0, 100],
             hover_data={
                 "quarter_index_jitter": False,
