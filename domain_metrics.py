@@ -137,7 +137,7 @@ def main():
                 title="OPEX as % of Budget",
                 x=0.53,
                 y=0.5,
-                len=1,
+                len=0.8,
                 thickness=15,
             ),
             title="Opportunity Win Probability (Scatter + Table)",
