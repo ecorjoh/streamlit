@@ -71,7 +71,7 @@ def main():
                 "Size* ($M)": True,
                 "OPEX": True,
                 "Percent Used": True,
-                # "Expected Close Date"
+                "Expected Close Date": True
             },
             color="Percent Used",
             # color_continuous_scale=px.colors.sequential.Magma,
@@ -102,17 +102,20 @@ def main():
             header=dict(
                 values=list(df[COLUMNS]),
                 fill_color="blue",
+                font=dict(color="white"),
                 align="left"
             ),
             cells=dict(
                 values=[df[col].tolist() for col in df[COLUMNS]],
+                fill_color="black",
+                font=dict(color="white"),
                 align="left"
             )
         )
         # Add the table trace to (row=1, col=2)
         fig.add_trace(table_trace, row=1, col=2)
         fig.update_traces(
-            textfont_size=14,
+            textfont_size=12,
             selector=(dict(type="scatter"))
         )
         # 5) Customize the scatter axis in (row=1, col=1)
@@ -131,7 +134,7 @@ def main():
         # 6) Final layout
         fig.update_layout(
             width=1500,
-            height=800,
+            height=1000,
             coloraxis_colorscale=px.colors.sequential.Reds,
             coloraxis_colorbar=dict(
                 title="OPEX as % of Budget",
