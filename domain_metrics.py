@@ -6,7 +6,7 @@ import pandas as pd
 import textwrap
 
 
-COLUMNS = ["Opportunity Name", "Size* ($M)", "OPEX", "Expected Close Date", "Current Win Probability (%)"]
+COLUMNS = ["Opportunity Name", "Size* ($M)", "OPEX", "Pre Sales Budget", "Expected Close Date", "Current Win Probability (%)"]
 def wrap_text(text, width=15):
     return "<br>".join(textwrap.wrap(str(text), width=width))
   
@@ -53,7 +53,7 @@ def main():
         )
         quarter_map = dict(zip(quarter_map_df["quarter_index"], quarter_map_df["QuarterStr"]))
 
-        df["Percent Used"] = round((df["OPEX"] / df["Size* ($M)"]) * 100, 2).astype(float)
+        df["Percent Used"] = round((df["OPEX"] / df["Pre Sales Budget"]) * 100, 2).astype(float)
         # 2) Create the scatter plot with Plotly Express
         scatter_fig = px.scatter(
             df,
