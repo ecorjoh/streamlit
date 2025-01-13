@@ -24,13 +24,13 @@ def main():
         df["Opportunity Name Wrapped"] = df["Opportunity Name"].apply(lambda x: wrap_text(x, width=15))
 
         # Convert Size column from strings (with commas) to integers
-        df["Size* ($M)"] = (
-            df["Size* ($M)"]
-            .astype(str)
-            .str.replace(",", "")
-            .astype(float)
-            .astype(int)
-        )
+        # df["Size* ($M)"] = (
+        #     df["Size* ($M)"]
+        #     .astype(str)
+        #     .str.replace(",", "")
+        #     .astype(float)
+        #     .astype(int)
+        # )
 
         # Extract quarter (1–4) and year
         df["Quarter"] = df["Expected Close Date"].dt.quarter
@@ -62,22 +62,20 @@ def main():
             text="Opportunity Name Wrapped",
             size="Size* ($M)",
             size_max=70,
-            range_y=[0, 100],
+            # range_y=[0, 100],
             hover_data={
                 "quarter_index_jitter": False,
                 "QuarterStr": False,
                 "Opportunity Name": False,
                 "Opportunity Name Wrapped": False,
-                "Size* ($M)": True,
+                "Size* ($M)": False,
+                "Pre Sales Budget": True,
                 "OPEX": True,
                 "Percent Used": True,
-                "Expected Close Date": True,
-                "Pre Sales Budget": True
+                "Expected Close Date": True,   
             },
             color="Percent Used",
-            # color_continuous_scale=px.colors.sequential.Magma,
-            # range_color=[0, 100],
-            template=None,
+            # template=None,
             title="Opportunity Win Probability by Expected Close Quarter"
         )
 
@@ -89,11 +87,11 @@ def main():
             specs=[
                 [{"type": "xy"}, {"type": "domain"}]
             ],
-            horizontal_spacing=0.1,  # space between the two columns
-            column_widths=[0.6, 0.4], # adjust widths: 60% for scatter, 40% for table
+            horizontal_spacing=0.07,  # space between the two columns
+            column_widths=[0.7, 0.3], # adjust widths: 60% for scatter, 40% for table
             subplot_titles=("Opportunity Scatter", "Data Table")
         )
-
+        
         # Add scatter traces from scatter_fig to (row=1, col=1)
         for trace in scatter_fig.data:
             fig.add_trace(trace, row=1, col=1)
@@ -124,7 +122,7 @@ def main():
             tickmode="array",
             tickvals=list(quarter_map.keys()),
             ticktext=list(quarter_map.values()),
-            title_text="Expected Close Quarter",
+            title_text="Expected Close by Quarter",
             row=1, col=1
         )
         fig.update_yaxes(
@@ -132,19 +130,35 @@ def main():
             range=[0, 100],
             row=1, col=1
         )
-
+        fig.add_shape(
+          type="line",
+          row=1,
+          col=1,
+          x0=df["quarter_index_jitter"].min(),  # left edge in data coords
+          x1=df["quarter_index_jitter"].max(),  # right edge in data coords
+          xref="x",
+          y0=50,
+          y1=50,
+          yref="y",
+          line=dict(
+              color="red",
+              width=2,
+              dash="dash"
+          )
+        )
         # 6) Final layout
         fig.update_layout(
-            width=1500,
+            width=1700,
             height=1000,
             coloraxis_colorscale=px.colors.sequential.Reds,
             coloraxis_colorbar=dict(
                 title="% of Budget Used",
-                x=0.53,
+                x=0.65,
                 y=0.5,
-                len=0.8,
+                len=1,
                 thickness=15,
             ),
+            # margin=dict(l=0, r=0, t=130, b=0),
             title="Opportunity Win Probability (Scatter + Table)",
             showlegend=False
         )
