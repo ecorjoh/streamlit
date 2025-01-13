@@ -71,7 +71,8 @@ def main():
                 "Size* ($M)": True,
                 "OPEX": True,
                 "Percent Used": True,
-                "Expected Close Date": True
+                "Expected Close Date": True,
+                "Pre Sales Budget": True
             },
             color="Percent Used",
             # color_continuous_scale=px.colors.sequential.Magma,
