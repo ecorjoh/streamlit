@@ -89,7 +89,7 @@ def main():
             ],
             horizontal_spacing=0.07,  # space between the two columns
             column_widths=[0.7, 0.3], # adjust widths: 60% for scatter, 40% for table
-            subplot_titles=("Opportunity Scatter", "Data Table")
+            # subplot_titles=("Opportunity Scatter", "Data Table")
         )
         
         # Add scatter traces from scatter_fig to (row=1, col=1)
@@ -142,7 +142,7 @@ def main():
           yref="y",
           line=dict(
               color="red",
-              width=2,
+              width=1,
               dash="dash"
           )
         )
