@@ -149,7 +149,7 @@ def main():
         # 6) Final layout
         fig.update_layout(
             width=1700,
-            height=900,
+            height=1000,
             coloraxis_colorscale=px.colors.sequential.Reds,
             coloraxis_colorbar=dict(
                 title="% Budget Used",
